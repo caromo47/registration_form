@@ -1,0 +1,120 @@
+<h1>Registration Form</h1>
+<div *ngIf="display === true">
+    <p class="registerMsg">Thank you for registering with us!</p>
+</div>
+<table>
+    <form name="regForm" (submit) = "onSubmit()">
+
+    <tr>
+        <td><input
+            type="text" name="firstName" placeholder="First Name"
+            [(ngModel)] = "user.firstName"
+            required
+            minlength="1"
+            maxlength="100"
+            #firstName="ngModel"
+            ><p *ngIf="!firstName.valid">Error First Name</p></td>
+    </tr>
+    <tr>
+        <td><input
+            type="text" name="lastName" placeholder="Last Name"
+            [(ngModel)]='user.lastName'
+            required
+            minlength="1"
+            maxlength="100"
+            #lastName="ngModel"
+            ><p *ngIf="!lastName.valid">Error Last Name</p>
+        </td>
+    </tr>
+    <tr>
+        <td><input
+            type="email" name="email" placeholder="Email"
+            [(ngModel)]='user.email'
+            required
+            minlength="4"
+            maxlength="100"
+            #email="ngModel"
+            ><p *ngIf="!email.valid">Error Email</p>
+        </td>
+    </tr>
+    <tr>
+        <td><input
+            type="password" name="password" placeholder="Password"
+            [(ngModel)]='user.password'
+            required
+            minlength="8"
+            maxlength="100"
+            #password="ngModel"
+            ><p *ngIf="!password.valid">Error Password Must Be 8 Characters Minimum</p>
+        </td>
+    </tr>
+    <tr>
+        <td><input
+            type="password" name="confirm" placeholder="Confirm Password"
+            [(ngModel)]='user.confirm'
+            required
+            minlength="1"
+            maxlength="100"
+            #confirm="ngModel"
+            ><p *ngIf="user.password != user.confirm">Password doesn't match!</p>
+        </td>
+    </tr>
+    <tr>
+        <td><input
+            type="text" name="streetAddress" placeholder="Street Address"
+            [(ngModel)]='user.streetAddress'
+            required
+            minlength="5"
+            maxlength="100"
+            #streetAddress="ngModel"
+            ><p *ngIf="!streetAddress.valid">Error Street Address</p>
+        </td>
+    </tr>
+    <tr>
+        <td><input
+            type="text" name="unit" placeholder="Unit/Apt # (Optional)"
+            [(ngModel)]='user.unit'
+            minlength="1"
+            maxlength="100"
+            #unit="ngModel"
+            >
+        </td>
+    </tr>
+    <tr>
+        <td><input
+            type="text" name="city" placeholder="City"
+            [(ngModel)]='user.city'
+            required
+            minlength="1"
+            maxlength="100"
+            #city="ngModel"
+            ><p *ngIf="!city.valid">Error City</p>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <select
+            [(ngModel)]='user.state'
+            name="state"
+            required
+            #state = 'ngModel'
+            >
+                <option value="ca">CA</option>
+                <option value="tx">TX</option>
+                <option value="wa">WA</option>
+                <option value="az">AZ</option>
+            </select>
+            <p *ngIf="!state.valid">Error State</p>
+        </td>
+    </tr>
+    <tr>
+        Feeling Lucky?
+        <input
+        [(ngModel)]='user.lucky' type="radio" name="lucky" value=true> Yes
+        <input [(ngModel)]='user.lucky' type="radio" name="lucky" value=false checked> No
+    </tr>
+
+    <button type="submit" name="submit" [disabled]="!regForm.valid">Register!</button>
+    </form>
+
+</table>
